@@ -1,0 +1,25 @@
+/vendor/
+/var/
+/generated/
+/pub/static/
+/app/etc/env.php
+.env
+
+# Magento specific
+/app/code/*/Test/
+/app/design/*/Test/
+/app/i18n/*/Test/
+/app/etc/config.php
+/app/etc/di.xml
+
+# IDE and system specific files
+/.idea/
+/.vscode/
+/.DS_Store
+
+# Logs and temp files
+*.log
+*.swp
+*.swo
+*.bak
+*.orig

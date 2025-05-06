@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Registration Form</title>
+        <css src='CustomContect_CustomForm::css/custom-form-style.css' />
+        <script src="CustomContect_CustomForm::js/custom-form.js" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="CustomContect\CustomForm\Block\Index" name="customform" template="CustomContect_CustomForm::index/index.phtml" />
+        </referenceContainer>
+      
+    </body>
+    
+</page>

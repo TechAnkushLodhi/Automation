@@ -1,0 +1,260 @@
+<?php
+/** @var \CustomContect\CustomForm\Block\Index $block */
+
+?>
+<?php
+$allFormData = $block->getAllFormData();
+
+$emailArray = [];
+$contactNumberArray = [];
+$emergencyContactArray = [];
+
+foreach ($allFormData as $formData) {
+    $emailArray[] = $formData['email'];
+    $contactNumberArray[] = $formData['contact_number'];
+    $emergencyContactArray[] = $formData['emergency_contact'];
+}
+// Pass PHP arrays to JavaScript
+echo '<script>';
+echo 'var emailArray = ' . json_encode($emailArray) . ';';
+echo 'var contactNumberArray = ' . json_encode($contactNumberArray) . ';';
+echo 'var emergencyContactArray = ' . json_encode($emergencyContactArray) . ';';
+echo '</script>';
+?>
+
+<div class="Registration-form">
+    <form action="<?php echo $block->getFormAction(); ?>" method="post" id="registration-form"
+        enctype="multipart/form-data">
+        <div class="field">
+            <label for="name" class="Required">Name</label>
+            <input type="text" id="name" name="name">
+            <div class="name_error">
+                <span class="error"></span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="date_of_birth" class="Required">Date of Birth</label>
+            <input type="date" id="date_of_birth" name="date_of_birth">
+            <div class="date_of_birth_error">
+                <span class="error"></span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="birth_place">Birth Place</label>
+            <input type="text" id="birth_place" name="birth_place">
+        </div>
+        <div class="field">
+            <label for="marital_status">Marital Status </label>
+            <select id="marital_status" name="marital_status">
+                <option value="" selected>Select</option>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+            </select>
+            <div class="marital_status_error">
+                <span class="error"></span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="education">Education</label>
+            <input type="text" id="education" name="education">
+        </div>
+        <div class="field">
+            <label for="job_title">Job Title</label>
+            <input type="text" id="job_title" name="job_title">
+        </div>
+        <div class="field">
+            <label for="graduated_school">Graduated School</label>
+            <input type="text" id="graduated_school" name="graduated_school">
+        </div>
+        <div class="field">
+            <label for="contact_number" class="Required">Contact Number</label>
+            <input type="number" id="contact_number" name="contact_number">
+            <div class="contect_number_error">
+                <span class="error"></span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="address">Address</label>
+            <textarea id="address" name="address"></textarea>
+        </div>
+        <div class="field">
+            <label for="email" class="Required">Email:</label>
+            <input type="email" id="email" name="email">
+            <div class="email_error">
+                <span class="error"></span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="gender" class="Required">Gender</label>
+            <div class="options">
+                <label><input type="radio" name="gender"  value="male">Male</label>
+                <label><input type="radio" name="gender"  value="female">Female</label>
+                <label><input type="radio" name="gender"  value="transgender">Transgender</label>
+                <div class="gender_error">
+                <span class="error"></span>
+               </div>
+            </div>
+            
+        </div>
+        <div class="field">
+            <label for="image">Profile Image</label>
+            <input type="file" id="image" name="image" accept="image/*, application/*" onchange="previewImage()">
+        </div>
+
+        <div class="field " id="image_upload_field" style="display:none;">
+            <label>Uploaded Image</label>
+            <img id="uploaded_image" src="#" alt="Uploaded Image" style="max-width: 100px; max-height: 100px; ">
+        </div>
+
+
+
+        <div class="field">
+            <label for="interests">Interests:</label>
+            <select multiple id="interests" name="interests[]">
+                <option value="sports">Sports</option>
+                <option value="music">Music</option>
+                <option value="movies">Movies</option>
+            </select>
+        </div>
+        <div class="field">
+            <label for="hobby">Hobbies:</label>
+            <div class="options">
+                <label><input type="checkbox" name="hobby[]" value="reading"> Reading</label>
+                <label><input type="checkbox" name="hobby[]" value="cooking"> Coding</label>
+                <label><input type="checkbox" name="hobby[]" value="gaming"> Gaming</label>
+                <label><input type="checkbox" name="hobby[]" value="singing"> singing</label>
+            </div>
+        </div>
+        <div class="emergency-information">
+            <h3>Emergency Information</h3>
+            <div class="field">
+                <label for="emergency_information">Emergency Name:</label>
+                <input type="text" id="emergency_information" name="emergency_information">
+            </div>
+
+            <div class="field">
+                <label for="relations">Relations</label>
+                <input type="text" id="relations" name="relations">
+            </div>
+
+            <div class="field">
+                <label for="emergency_contact" class="Required">Emergency Contect</label>
+                <input type="number" id="emergency_contact" name="emergency_contact">
+                <div class="emergency_contact_error">
+                    <span class="error"></span>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <button type="submit" title="Submit" class="action submit primary">
+                <span>Submit</span>
+            </button>
+            <button type="reset" title="Reset" class="action reset">
+                <span>Reset</span>
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+
+<script type="text/javascript">
+function previewImage() {
+    var input = document.getElementById('image');
+    var image = document.getElementById('uploaded_image');
+    var image_upload_image = document.getElementById('image_upload_field');
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            image.src = e.target.result;
+            image_upload_image.style.display = 'block'; // Display the image
+
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+
+
+
+<!-- use for javascript -->
+<!-- onsubmit="return submitForm()"  // isko <form  yaha par rakhna hoga> -->
+
+<!-- <script>
+    
+function submitForm() {
+    resetErrorMessages();
+    window.scrollTo(0, 0);
+
+    var email = getValueById('email');
+    var contactNumber = getValueById('contact_number');
+    var emergencyContact = getValueById('emergency_contact');
+    var dateOfBirth = getValueById('date_of_birth');
+    var name = getValueById('name');
+    var marital_status = getValueById('marital_status');
+
+    var hasErrors = false;
+
+    // Check for empty fields and display error
+    hasErrors |= checkEmpty(email, '.email_error', 'Email is required.');
+    hasErrors |= checkEmpty(contactNumber, '.contect_number_error', 'Contact Number is required.');
+    hasErrors |= checkEmpty(emergencyContact, '.emergency_contact_error', 'Emergency Contact is required.');
+    hasErrors |= checkEmpty(dateOfBirth, '.date_of_birth_error', 'Date of Birth is required.');
+    hasErrors |= checkEmpty(name, '.name_error', 'Name is required.');
+    hasErrors |= checkEmpty(marital_status, '.marital_status_error', 'marital_status is required.');
+
+
+
+
+ // Check if values exist in arrays only if there are values in the fields
+ if (!hasErrors) {
+        hasErrors |= checktotaldigit(contactNumber, '.contect_number_error', 'Contact Number should have exactly 10 digits');
+        hasErrors |= checktotaldigit(emergencyContact, '.emergency_contact_error', 'Contact Number should have exactly 10 digits');
+        if(!hasErrors){
+            hasErrors |= checkIfValueExists(email, emailArray, '.email_error', 'Email already exists.');
+        hasErrors |= checkIfValueExists(contactNumber, contactNumberArray, '.contect_number_error', 'Contact Number already exists.');
+        hasErrors |= checkIfValueExists(emergencyContact, emergencyContactArray, '.emergency_contact_error', 'Emergency Contact already exists.');
+        }
+       
+    }
+    return !hasErrors;
+}
+function resetErrorMessages() {
+    ['.email_error', '.contect_number_error', '.emergency_contact_error', '.date_of_birth_error', '.name_error', '.marital_status_error'].forEach(selector => {
+        document.querySelector(selector + ' .error').innerText = '';
+    });
+}
+function getValueById(id) {
+    return document.getElementById(id).value;
+}
+function checkEmpty(value, errorSelector, errorMessage) {
+    if (value.trim() === '') {
+        showError(errorSelector, errorMessage);
+        return true;
+    }
+    return false;
+}
+function checktotaldigit(value,errorSelector,errorMessage){
+  if(value.length!==10){
+    showError(errorSelector, errorMessage);
+        return true;
+  }
+  return false;
+}
+
+function checkIfValueExists(value, array, errorSelector, errorMessage) {
+    if (array.includes(value)) {
+        showError(errorSelector, errorMessage);
+        return true;
+    }
+    return false;
+}
+function showError(errorSelector, errorMessage) {
+    document.querySelector(errorSelector + ' .error').innerText = errorMessage;
+    document.querySelector(errorSelector).scrollIntoView({ behavior: 'smooth' });
+}
+</script> -->

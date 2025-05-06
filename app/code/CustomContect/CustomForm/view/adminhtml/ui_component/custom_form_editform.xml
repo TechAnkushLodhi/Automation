@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">custom_form_editform.customeform_form_data_source</item>
+        </item>
+        <item name="deps" xsi:type="array">
+            <item name="dep" xsi:type="string">CustomContect_customform/js/custom-email-validation</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Employee Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save_and_continue" class="CustomContect\CustomForm\Block\Adminhtml\CustomFormData\Edit\SaveAndContinueButton"/>
+            <button name="save" class="CustomContect\CustomForm\Block\Adminhtml\CustomFormData\Edit\SaveButton"/>
+            <button name="reset" class="CustomContect\CustomForm\Block\Adminhtml\CustomFormData\Edit\ResetButton"/>
+            <button name="delete" class="CustomContect\CustomForm\Block\Adminhtml\CustomFormData\Edit\DeleteButton"/>
+            <button name="back" class="CustomContect\CustomForm\Block\Adminhtml\CustomFormData\Edit\BackButton"/>
+        </buttons>
+        <namespace>custom_form_editform</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>custom_form_editform.customeform_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="customeform_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="customform/cfrom/save"/>
+        </settings>
+        <dataProvider class="CustomContect\CustomForm\Model\CustomFormData\DataProvider" name="customeform_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+         <settings>
+            
+            <label translate="true">General</label>
+        </settings>
+        <field name="id" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">allemployee</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>id</dataScope>
+            </settings>
+        </field>
+        <field name="status" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">allemployee</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable Employee</label>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="name" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">allemployee</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Employee Name</label>
+                <dataScope>name</dataScope>
+                <validation>
+                      <rule name="required-entry" xsi:type="boolean">true</rule>
+                      <rule name="custom-name-validation" xsi:type="boolean">true</rule> 
+                </validation>
+            </settings>
+        </field>
+
+
+    </fieldset>
+   
+    <fieldset name="personal_information" sortOrder="20">
+    <settings>
+        <collapsible>true</collapsible>
+        <label translate="true">Personal Information</label>
+    </settings>
+
+    
+
+<field name="date_of_birth">
+    <argument name="data" xsi:type="array">
+        <item name="config" xsi:type="array">
+            <item name="dataType" xsi:type="string">string</item>
+            <item name="label" xsi:type="string" translate="true">Date of birth</item>
+            <item name="formElement" xsi:type="string">date</item>
+            <item name="source" xsi:type="string">page</item>
+            <item name="sortOrder" xsi:type="number">21</item>
+            <item name="dataScope" xsi:type="string">date_of_birth</item>
+            <item name="validation" xsi:type="array">
+                <item name="required-entry" xsi:type="boolean">true</item>
+            </item>
+            <item name="options" xsi:type="array">
+                <item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+                <item name="maxDate" xsi:type="string">new Date()</item>
+                <!-- <item name="timeFormat" xsi:type="string">HH:mm:ss</item> -->
+                <!-- <item name="showsTime" xsi:type="boolean">true</item> -->
+            </item>
+            <!-- <item name="storeTimeZone" xsi:type="string">string</item> -->
+        </item>
+    </argument>
+</field>
+
+    <field name="birth_place" formElement="input">
+        <settings>
+            <label translate="true">Birth Place</label>
+            <dataScope>birth_place</dataScope>
+        </settings>
+    </field>
+
+    <field name="education" formElement="input">
+        <settings>
+            <label translate="true">Education</label>
+            <dataScope>education</dataScope>
+        </settings>
+    </field>
+
+     <field name="job_title" formElement="input">
+        <settings>
+            <label translate="true">Job Title</label>
+            <dataScope>job_title</dataScope>
+           
+        </settings>
+            
+    </field>
+
+       <field name="graduated_school" formElement="input">
+        <settings>
+            <label translate="true">Graduated School</label>
+            <dataScope>graduated_school</dataScope>
+        </settings>
+      </field>
+        <field name="contact_number" formElement="input">
+        <settings>
+            <label translate="true">Contact Number</label>
+            <dataScope>contact_number</dataScope>
+            <validation>
+               <rule name="required-entry" xsi:type="boolean">true</rule>
+                <rule name="validate-digits" xsi:type="boolean">true</rule>
+                <rule name="min_text_length" xsi:type="number">10</rule>
+                <rule name="max_text_length" xsi:type="number">10</rule>
+                <rule name="custom-contact_number-validation" xsi:type="boolean">true</rule>
+           </validation>
+           
+        </settings>
+    </field>
+
+
+      <field name="address" sortOrder="40" formElement="textarea">
+            <settings>
+                <label translate="true">Address</label>
+                <dataType>text</dataType>
+                <dataScope>address</dataScope>
+            </settings>
+        </field>
+
+        <field name="email" formElement="email">
+            <settings>
+                <label translate="true">Email Id</label>
+                <dataScope>email</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                     <!-- <rule name="validate-email" xsi:type="boolean">true</rule>
+                      <rule name="validate-unique-email" xsi:type="boolean">true</rule> -->
+                        <rule name="custom-check-validation" xsi:type="boolean">true</rule> 
+                </validation>
+            </settings>
+        </field>
+       
+    <field name="marital_status" formElement="select">
+    <settings>
+        <label translate="true">Marital Status</label>
+        <dataScope>marital_status</dataScope>
+               <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+    </settings>
+    <formElements>
+        <select>
+            <settings>
+                <options>
+                   <option name="None_marital_status" xsi:type="array">
+                        <item name="value" xsi:type="string"></item>
+                        <item name="label" xsi:type="string" translate="true">None</item>
+                    </option>
+                    <option name="single" xsi:type="array">
+                        <item name="value" xsi:type="string">single</item>
+                        <item name="label" xsi:type="string" translate="true">Single</item>
+                    </option>
+                    <option name="married" xsi:type="array">
+                        <item name="value" xsi:type="string">married</item>
+                        <item name="label" xsi:type="string" translate="true">Married</item>
+                    </option>
+                 
+                </options>
+            </settings>
+        </select>
+    </formElements>
+   </field>
+    
+<field name="gender" formElement="radioset">
+    <settings>
+        <label translate="true">Gender</label>
+        <componentType>field</componentType>
+               <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+    </settings>
+    <formElements>
+        <radioset>
+            <settings>
+                <options class="CustomContect\CustomForm\Model\CustomFormData\Source\GenderOptions"/>
+            </settings>
+        </radioset>
+    </formElements>
+</field>
+
+    <field name="interests" formElement="multiselect">
+        <settings>
+            <label translate="true">Interests</label>
+            <dataScope>interests</dataScope>
+        </settings>
+        <formElements>
+            <multiselect>
+                <settings>
+                    <options>
+                        <option name="sports" xsi:type="array">
+                            <item name="value" xsi:type="string">sports</item>
+                            <item name="label" xsi:type="string" translate="true">Sports</item>
+                        </option>
+                        <option name="music" xsi:type="array">
+                            <item name="value" xsi:type="string">music</item>
+                            <item name="label" xsi:type="string" translate="true">Music</item>
+                        </option>
+                        <option name="movie" xsi:type="array">
+                          <item name="value" xsi:type="string">movies</item>
+                          <item name="label" xsi:type="string" translate="true">Movies</item>
+                        </option>
+                    </options>
+                </settings>
+            </multiselect>
+        </formElements>
+    </field>
+
+   <field name="hobby" formElement="checkboxset">
+    <settings>
+        <label translate="true">Hobby</label>
+        <componentType>field</componentType>
+    </settings>
+    <formElements>
+        <checkboxset>
+            <settings>
+                <options class="CustomContect\CustomForm\Model\CustomFormData\Source\HobbyOptions"/>
+            </settings>
+        </checkboxset>
+    </formElements>
+</field>
+
+</fieldset>
+
+
+<fieldset name="file_upload" sortOrder="30">
+    <settings>
+        <collapsible>true</collapsible>
+        <label translate="true">Photo</label>
+    </settings>
+    <field name="image">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="dataType" xsi:type="string">string</item>
+                <item name="source" xsi:type="string">Label	</item>
+                <item name="label" xsi:type="string" translate="true">Passoword Size Image</item>
+                <item name="visible" xsi:type="boolean">true</item>
+                <item name="formElement" xsi:type="string">fileUploader</item>
+                <item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+                <item name="previewTmpl" xsi:type="string">CustomContect_CustomForm/image-preview</item>
+                <item name="required" xsi:type="boolean">false</item>
+                <item name="sortOrder" xsi:type="number">4</item>
+                <item name="uploaderConfig" xsi:type="array">
+                    <item name="url" xsi:type="url" path="customform/upload/Imageupload"/>
+                </item>
+            </item>
+        </argument>
+</field>
+
+<field name="image_preview" formElement="image" sortOrder="20">
+    <settings>
+        <visible>false</visible>
+        <dataScope>image</dataScope>
+    </settings>
+</field>
+
+
+
+</fieldset>
+
+<fieldset name="emergency_information" sortOrder="40">
+ <settings>
+        <collapsible>true</collapsible>
+        <label translate="true">Emergency Information</label>
+    </settings>
+
+    <field name="emergency_information" formElement="input">
+        <settings>
+            <label translate="true">Emergency Name </label>
+            <dataScope>emergency_information</dataScope>
+        </settings>
+    </field>
+
+    <field name="relations" formElement="input">
+        <settings>
+            <label translate="true">Relation </label>
+            <dataScope>relations</dataScope>
+        </settings>
+    </field>
+    <field name="emergency_contact" formElement="input">
+    <settings>
+        <label translate="true">Emergency  Number</label>
+        <dataScope>emergency_contact</dataScope>
+        <validation>
+            <rule name="required-entry" xsi:type="boolean">true</rule>
+            <rule name="validate-digits" xsi:type="boolean">true</rule>
+            <rule name="min_text_length" xsi:type="number">10</rule>
+            <rule name="max_text_length" xsi:type="number">10</rule>
+            <rule name="custom-emergency-contact-validation" xsi:type="boolean">true</rule> 
+        </validation>
+    </settings>
+   </field>
+
+ 
+</fieldset>
+
+
+</form>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework/Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="icecube_customer_attributes" resource="default" engine="innodb" comment="Customer Attributes">
+        <column xsi:type="int" name="attribute_id" nullable="false" unsigned="true" identity="true" comment="Attribute ID" />
+        <column xsi:type="varchar" name="attribute_code" nullable="false" length="255" comment="Attribute Code" />
+        <column xsi:type="varchar" name="attribute_label" nullable="false" length="255" comment="Attribute Label" />
+        <column xsi:type="varchar" name="attribute_type" nullable="false" length="50" comment="Attribute Type" />
+        <column xsi:type="smallint" name="is_required" nullable="false" default="0" comment="Is Required" />
+        <column xsi:type="smallint" name="is_visible" nullable="false" default="1" comment="Is Visible" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="attribute_id"/>
+        </constraint>
+    </table>
+</schema>

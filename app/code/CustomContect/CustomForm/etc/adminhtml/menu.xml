@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+	  <add id="CustomContect_CustomForm::icecubeform" title="ICECUBEFORM" translate="title" module="CustomContect_CustomForm" sortOrder="60" dependsOnModule="CustomContect_CustomForm" resource="CustomContect_CustomForm::icecubeform"/>
+	  <add id="CustomContect_CustomForm::Employe" title="Employe" translate="title" module="CustomContect_CustomForm" parent="CustomContect_CustomForm::icecubeform" sortOrder="40" dependsOnModule="CustomContect_CustomForm" resource="CustomContect_CustomForm::Employe"/>
+	  <add id="CustomContect_CustomForm::all_employe" title="All Employees" translate="title" module="CustomContect_CustomForm" parent="CustomContect_CustomForm::Employe" sortOrder="20" dependsOnModule="CustomContect_CustomForm" action="customform/cfrom" resource="CustomContect_CustomForm::all_employe"/>
+	</menu>
+</config>
+

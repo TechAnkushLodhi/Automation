@@ -1,0 +1,166 @@
+
+body [type="file"] {
+    color: var(--bs-bblack);
+    font-size: 1em;
+    font-weight: 400;
+    font-family: var(--bs-fonts-inter);
+  }
+  body [type="file"]::-webkit-file-upload-button {
+    background: linear-gradient(180deg, #ebebeb 0%, #d0d0d0 100%);
+    border: 1px solid #d4d4cd;
+    color: var(--bs-grey);
+    cursor: pointer;
+    outline: none;
+    padding: 0.8em 1em;
+    font-weight: 600;
+    transition: all 0.5s ease;
+  }
+  
+  .error{
+      color:red;
+  }
+
+  .Required::after {
+    content: '*';
+    color: red;
+    font-size: 20px;
+    margin-left: 7px;
+}
+
+
+
+
+/* Style form fields */
+.field {
+    margin-bottom: 20px;
+}
+
+/* Style form labels */
+.field label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+/* Style form input elements */
+.field input,
+.field textarea,
+.field select {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Style error messages */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Style submit button */
+.actions .submit {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Style the reset button */
+.actions .reset {
+    background-color: #ccc;
+    color: #333;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Style the form header */
+.Registration-form h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Style the image upload field */
+
+
+/* Style the checkboxes and radio buttons */
+.options label {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+/* Style the error message for checkboxes and radio buttons */
+.options .error {
+    display: block;
+    margin-top: 5px;
+}
+
+/* Additional styling for multi-select */
+#interests,
+#hobby {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    height: 100px; /* Adjust the height as needed */
+}
+
+/* Style the date of birth input */
+#date_of_birth {
+    width: calc(100% - 22px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Style the emergency information section */
+.emergency-information {
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+
+/* Style the form fields within the emergency information section */
+.emergency-information .field {
+    margin-bottom: 15px;
+}
+
+/* Style the form header within the emergency information section */
+.emergency-information h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Style the file input */
+
+#image_upload_field label {
+    cursor: pointer;
+    color: #4CAF50;
+}
+
+#image_upload_field img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-top: 10px;
+    display: block;
+}
+
+.customform-index-index .page-title-wrapper {
+    text-align: center;
+}
+
+.customform-index-index .page-title-wrapper .page-title {
+    padding: 20px;
+    border: 2px solid #ccc;
+    box-shadow: -30px 15px 24px #ccc;
+}
+
+.customform-index-index .page-title-wrapper .page-title .base {font-weight: 800;font-family: cursive;}

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Icecube_AttributeManager::icecube"
+             title="Icecube" 
+             module="Icecube_AttributeManager" 
+             sortOrder="51" 
+             resource="Icecube_AttributeManager::icecube"/>
+        <add id="Icecube_AttributeManager::attributemanager" 
+             title="Manage Attributes" 
+             module="Icecube_AttributeManager" 
+             sortOrder="10" 
+             action="attribute_manager/attribute/index" 
+             resource="Icecube_AttributeManager::attributemanager" 
+             parent="Icecube_AttributeManager::icecube"/>
+        <add id="Icecube_AttributeManager::attributemanager_configuration" 
+             title="Configuration" 
+             module="Icecube_AttributeManager" 
+             sortOrder="99" 
+             parent="Icecube_AttributeManager::icecube" 
+             action="admin/system_config/edit/section/manage_attribute" 
+             resource="Icecube_AttributeManager::attributemanager_configuration"/>
+    </menu>
+</config>

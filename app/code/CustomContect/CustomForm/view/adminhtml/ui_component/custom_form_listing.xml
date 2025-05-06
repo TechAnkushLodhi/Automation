@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">custom_form_listing.custom_form_listing_data_source</item>
+            <item name="deps" xsi:type="string">custom_form_listing.custom_form_listing_data_source</item>
+        </item>
+         <item name="deps" xsi:type="array">
+            <item name="dep" xsi:type="string">CustomContect_customform/js/custom-email-validation</item>
+        </item>
+        <item name="spinner" xsi:type="string">customform_columns</item>
+     
+        <item name="buttons" xsi:type="array">
+             <!-- <item name="back" xsi:type="array">
+                <item name="name" xsi:type="string">back</item>
+                <item name="label" xsi:type="string" translate="true">Back</item>
+                <item name="class" xsi:type="string">back</item>
+                <item name="url" xsi:type="string">*/*/back</item>
+            </item> -->
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add Employee Data</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/new</item>
+            </item>
+
+        </item>
+    </argument>
+	<dataSource name="custom_form_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">CustomformGridDataProvider</argument>
+            <argument name="name" xsi:type="string">custom_form_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+			<argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+            <!-- <sticky type="xs:boolean">true</sticky> -->
+        </settings>
+		<!-- <bookmark name="bookmarks"/> -->
+		<columnsControls name="columns_controls" />
+		<filterSearch name="fulltext"/>
+		<filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="observers" xsi:type="array">
+                    <item name="column" xsi:type="string">column</item>
+                </item>
+            </argument>
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+         </filters>
+            <exportButton class="Magento\Ui\Component\ExportButton">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="options" xsi:type="array">
+                                <item name="csv" xsi:type="array"> <!-- Fix: Change 'cvs' to 'csv' -->
+                                    <item name="value" xsi:type="string">csv</item>
+                                    <item name="label" xsi:type="string" translate="true">CSV</item>
+                                    <item name="url" xsi:type="string">mui/export/gridToCsv</item>
+                                </item>
+                                <item name="xml" xsi:type="array">
+                                    <item name="value" xsi:type="string">xml</item>
+                                    <item name="label" xsi:type="string" translate="true">Excel XML</item>
+                                    <item name="url" xsi:type="string">mui/export/gridToXml</item>                          
+                                </item> 
+                            </item>
+                        </item>
+                    </argument>
+               </exportButton>
+
+		<massaction name="listing_massaction" component="Magento_Ui/js/grid/tree-massactions">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="customform/cfrom/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+                   
+        </massaction>
+		<paging name="listing_paging"/>
+    </listingToolbar>
+	<columns name="customform_columns">
+		<settings>
+            <editorConfig>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="customform/cfrom/inlineEdit"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+                <param name="indexField" xsi:type="string">id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">custom_form_listing.custom_form_listing.customform_columns.ids</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">custom_form_listing.custom_form_listing.customform_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+		<selectionsColumn name="ids">
+            <settings>
+                <indexField>id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>55</resizeDefaultWidth>
+            </settings>
+        </selectionsColumn>
+        <column name="id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="name">
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">Name</label>
+            </settings>
+        </column>
+		<column name="status" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="CustomContect\CustomForm\Model\CustomFormData\Source\Status"/>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+         <column name="date_of_birth">
+                <settings>
+                    <filter>dateRange</filter>
+                    <editor>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
+                        <editorType>text</editorType>
+                    </editor>
+                    <label translate="true">Date of Birth</label>
+                </settings>
+            </column>
+
+       <column name="marital_status" component="Magento_Ui/js/grid/columns/select">
+        <settings>
+        <options class="CustomContect\CustomForm\Ui\Component\Listing\Column\MaritalStatusOptions"/>
+           <filter>select</filter>
+            <editor>
+                <editorType>select</editorType>
+            </editor>
+            <dataType>select</dataType>
+            <label translate="true">Marital Status</label>
+        </settings>
+       </column>
+       <column name="contact_number">
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">Contact Number</label>
+            </settings>
+        </column>
+        <column name="address">
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">Address</label>
+            </settings>
+        </column>
+        <column name="email">
+            <settings>
+                <filter>text</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">Email</label>
+            </settings>
+        </column>
+            <column name="gender">
+            <settings>
+                <label translate="true">Gender</label>
+            </settings>
+         </column>
+
+		<!-- <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Created</label>
+            </settings>
+        </column>
+        <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <filter>dateRange</filter>
+                <dataType>date</dataType>
+                <label translate="true">Modified</label>
+            </settings>
+        </column> -->
+
+		<actionsColumn name="actions" class="CustomContect\CustomForm\Ui\Component\Listing\Column\CustomeformAction">
+            <settings>
+                <indexField>id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

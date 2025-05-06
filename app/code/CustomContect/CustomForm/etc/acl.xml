@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="CustomContect_CustomForm::CustomContect" title="CustomContect" sortOrder="51">
+					<resource id="CustomContect_CustomForm::customform_cform" title="All Customer" sortOrder="10">
+						<resource id="CustomContect_CustomForm::save" title="Save customer" translate="title" sortOrder="10" />
+						<resource id="CustomContect_CustomForm::customer_delete" title="Delete Customer" translate="title" sortOrder="20" />
+					</resource>
+				</resource>
+				<resource id="Magento_Backend::stores">
+					<resource id="Magento_Backend::stores_settings">
+						<resource id="Magento_Config::config">
+							<resource id="CustomContect_CustomForm::news_config" title="CustomContect Customer" translate="title"/>
+						</resource>
+					</resource>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>
